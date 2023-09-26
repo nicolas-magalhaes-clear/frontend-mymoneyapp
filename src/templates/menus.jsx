@@ -12,10 +12,10 @@ const Menus = (props) =>{
     return(
         <div className="flex flex-col w-full items-center mt-6 text-white">
             <ul className="flex w-full flex-col rounded-md hover:bg-slate-300 hover:text-stone-800">
-                <MenuItems path="#" label="Dashboard" className='rounded' icon={<MdDashboard/>}/>
+                <MenuItems path="/dashboard" label="Dashboard" className='rounded' icon={<MdDashboard/>}/>
             </ul>
             <MenuTree icon={<AiOutlineUserAdd/>}  label="Cadastro">
-                <MenuItems path='#' label="Ciclos de pagamentos"/>
+                <MenuItems path='/cadastro/ciclopagamentos' label="Ciclos de pagamentos"/>
             </MenuTree>
         </div>
     )
