@@ -6,11 +6,11 @@ const Layout = (props) => {
 
             <Sidebar />
             <div className="wrapper w-full h-full">
-                <div className="header-area h-1/5">
+                <div className="header-area" style={{height: '15%'}}>
                     <Header />
 
                 </div>
-                <div className="content-area h-4/5 bg-stone-700 border-stone-400">
+                <div className="content-area bg-stone-700 border-stone-400" style={{height: '85%'}}>
                     <div className="h-full w-100 grid grid-cols-6 grid-rows-6">
                         <div className="content col-span-6 row-span-5">
                             {props.children}
