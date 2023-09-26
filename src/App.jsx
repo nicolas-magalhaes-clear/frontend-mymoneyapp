@@ -8,6 +8,7 @@ export default function App() {
     <Layout>
         
     <Routes>
+      <Route exact path="/" element={<Dashboard/>}/>
       <Route path="/dashboard" element={<Dashboard/>}/>
       <Route path="/cadastro/ciclopagamentos" element={<CicloPagamentos/>}/>
     </Routes>
