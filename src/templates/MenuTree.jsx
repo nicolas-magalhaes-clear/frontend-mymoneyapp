@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 export default function MenuTree(props) {
     const [openMenu, setOpenMenu] = useState(false);
     useEffect(function(){
-        console.log('open menu now', openMenu)
+        
     }, [openMenu])
 
     return (
