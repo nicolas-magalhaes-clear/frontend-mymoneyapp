@@ -43,10 +43,7 @@ export default function Incluir(props) {
                         {props.creditsRows.map(credit =>{
                             console.log('credit::', credit)
                         } )}
-                        {props.creditsRows.map((credit,index) => (
-
-                                
-                        ))}
+                        
                     </div>
                 </div>
             </div>

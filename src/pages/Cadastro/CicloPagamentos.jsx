@@ -34,6 +34,7 @@ export default function CicloPagamentos() {
 
 
     const showCredits = () => {
+        
         creditsRows.map((credit, index) => (
             <div className="grid grid-cols-3 gap-x-2" key={index}>
                 <Input type="text" placeholder="Nome do crédito" value={credit.creditName} name="credit" className="" />
