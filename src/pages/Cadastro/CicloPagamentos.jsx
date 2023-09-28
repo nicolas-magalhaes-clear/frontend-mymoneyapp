@@ -6,9 +6,10 @@ import Alterar from './Alterar'
 import { useSelector, useDispatch } from "react-redux"
 import { fetchData } from "../../store/actions/billingCycleSlice"
 import { useEffect } from "react"
+import Input from "../../templates/Input"
 
 
-import { FaBars, FaPlus, FaPen, FaTrash } from 'react-icons/fa'
+import { FaBars, FaPlus, FaPen, FaTrash, FaCopy } from 'react-icons/fa'
 
 export default function CicloPagamentos() {
 
@@ -29,13 +30,13 @@ export default function CicloPagamentos() {
 
     const [creditsRows, setCreditsRows] = useState([{ creditName: "", creditValue: 0 }])
     console.log('credits rows ciclo:', creditsRows)
-    const [loadedItem, setLoadedItem] = useState(<Incluir creditsRows={creditsRows} setCreditsRows={setCreditsRows} />)
+    const [loadedItem, setLoadedItem] = useState(<Incluir creditsRows={creditsRows} showCredits={showCredits} />)
     const [activeItem, setActiveItem] = useState('Incluir')
 
 
-    const showCredits = () => {
+    function showCredits (){
         
-        creditsRows.map((credit, index) => (
+       return creditsRows.map((credit, index) => (
             <div className="grid grid-cols-3 gap-x-2" key={index}>
                 <Input type="text" placeholder="Nome do crédito" value={credit.creditName} name="credit" className="" />
                 <Input type="number" placeholder="Valor do crédito" value={credit.creditValue} name="credit" className=""
@@ -43,7 +44,7 @@ export default function CicloPagamentos() {
                 <div className="flex items-center">
 
                     <FaPlus className="bg-blue-400 p-2 me-1 text-3xl text-white rounded-sm"
-                        onClick={() => addCreditsRows()} />
+                        onClick={() => setCreditsRows([...creditsRows, {creditName: "", creditValue: 0}])} />
                     <FaCopy className="bg-orange-500 p-2 me-1 text-3xl text-white rounded-sm" />
                     <FaTrash className="bg-rose-600 p-2 text-3xl text-white rounded-sm" />
                 </div>
@@ -66,10 +67,10 @@ export default function CicloPagamentos() {
     }
 
     return (
-        <div className="w-full h-full">
+        <div className="w-full h-full flex flex-col flex-1">
             <div className="flex flex-1 bg-blue-500 rounded-t-md overflow-hidden" style={{ height: '10%' }}>
                 <ul className="flex items-center cursor-pointer">
-                    <li onClick={() => changePage(<Incluir creditsRows={creditsRows} setCreditsRows={setCreditsRows} />, 'Incluir')} className={`h-full flex items-center px-2 ${verifyPage('Incluir')} hover:bg-cyan-300 duration-75`}>
+                    <li onClick={() => changePage(<Incluir creditsRows={creditsRows} showCredits={showCredits} />, 'Incluir')} className={`h-full flex items-center px-2 ${verifyPage('Incluir')} hover:bg-cyan-300 duration-75`}>
                         <FaPlus />
                         Incluir
                     </li>
