@@ -29,7 +29,7 @@ export default function CicloPagamentos() {
     }, [allData])
 
     const [creditsRows, setCreditsRows] = useState([{ creditName: "", creditValue: 0 }])
-    console.log('credits rows ciclo:', creditsRows)
+    
     const [loadedItem, setLoadedItem] = useState(<Incluir creditsRows={creditsRows} showCredits={showCredits} />)
     const [activeItem, setActiveItem] = useState('Incluir')
 
@@ -93,7 +93,7 @@ export default function CicloPagamentos() {
             </div>
             <div className="flex bg-slate-200 p-2" style={{ height: '90%' }}>
                 {loadedItem}
-                {console.log('data all data data: ', allData)}
+               
             </div>
         </div>
     )
