@@ -13,27 +13,26 @@ export default function Dashboard() {
     const allData = useSelector((state) => state.billingCycle.data)
     const loadingStatus= useSelector((state)=> state.billingCycle.loading)
 
-    console.log('alldata start:', allData)
+    
     useEffect(()=>{
         dispatch(fetchData());
-        console.log('load status1:', loadingStatus)
+    
     }, [dispatch])
 
     useEffect(()=>{
         if(allData !== null){
-            console.log('valor diferente de nulo')
-            console.log('valor de alldata completo', allData)
+            
 
             let credits = 0
             let debts = 0
             allData.forEach(data=> {
-                console.log('Entrou em for each', data)
+            
                 data.credits.forEach(currentCredit => {
-                    console.log(`adicionando o valor de ${currentCredit.value} ao valor ${credits} `)
+            
                     credits+= parseInt(currentCredit.value)
                 })
                 data.debts.forEach(currentDebt => {
-                    console.log(`adicionando o valor de ${currentDebts.value} ao valor ${debts} `)
+                    
                     debts+= parseInt(currentDebt.value)
                 })
             })
