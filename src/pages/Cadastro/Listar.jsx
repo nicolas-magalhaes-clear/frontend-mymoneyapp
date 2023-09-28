@@ -2,6 +2,7 @@ import { FaPen, FaTrash } from "react-icons/fa"
 import CustomModal from './../../templates/Modal'
 import { useState } from "react"
 import axios from "axios"
+import UpdateModal from "../../templates/UpdateModal"
 
 
 export default function Listar(props) {
@@ -14,12 +15,26 @@ export default function Listar(props) {
     }
     function concludeDelete(id){
         axios.delete(`http://localhost:3003/api/${id}`, {headers: id}).then(resp => {
-            console.log('response:', resp)
+            
             setModalActive(false)
         })
     }
 
+    function callUpdateModal(data){
+        
+        setUpdateModalActive(true)
+        setCurrentData(data)
+    }
+    
+    function getData(data){
+        console.log('data ok: ', data)
+
+        setUpdateModalActive(false)
+        axios.put(`http://localhost:3003/api/${data._id}`, {data })
+    }
+
     const [modalActive, setModalActive] = useState(false)
+    const [updateModalActive, setUpdateModalActive] = useState(false)
     const [currentData, setCurrentData] = useState(null)
     const [deleteChoide, setDeleteChoice] = useState(false)
     return (
@@ -41,7 +56,7 @@ export default function Listar(props) {
                             <td className="col-span-2">{data.month}</td>
                             <td className="col-span-2">{data.year}</td>
                             <td className="text-white  text-3xl col-span-2 flex justify-center">
-                                <button className="appearance-none bg-orange-500 me-1 rounded-sm"><FaPen className="p-1" /></button>
+                                <button className="appearance-none bg-orange-500 me-1 rounded-sm"><FaPen className="p-1" onClick={(e) => callUpdateModal(data)} /></button>
                                 <button className="appearance-none bg-rose-500 ms-1 rounded-sm"><FaTrash className="p-1" onClick={(e) => callModal(data)} /></button>
                             </td>
                         </tr>
@@ -52,6 +67,7 @@ export default function Listar(props) {
                 
             </table>
             {!  modalActive ? null : (<CustomModal data={currentData} concludeDelete={concludeDelete}/>) }
+            {! updateModalActive ? null : (<UpdateModal data={currentData} getData={getData} />)}
         </>
     )
 }
