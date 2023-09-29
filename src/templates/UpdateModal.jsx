@@ -175,7 +175,7 @@ export default function UpdateModal(props) {
                             </div>
                             <div className="">
                                 <button type="button" className="bg-orange-500 p-1 rounded-md me-1" onClick={() => handleUpdate()} >Atualizar</button>
-                                <button type="button" className=" ">Cancelar</button>
+                                <button type="button" onClick={()=> props.closeBtn()}  className=" ">Cancelar</button>
                             </div>
                         </div>
 
