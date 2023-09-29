@@ -28,6 +28,11 @@ export default function CicloPagamentos() {
         }
     }, [allData])
 
+    function reloadData(){
+        console.log('reload data ok:')
+        dispatch(fetchData())
+    }
+
     const [creditsRows, setCreditsRows] = useState([{ creditName: "", creditValue: 0 }])
     
     const [loadedItem, setLoadedItem] = useState(<Incluir creditsRows={creditsRows} showCredits={showCredits} />)
@@ -74,18 +79,11 @@ export default function CicloPagamentos() {
                         <FaPlus />
                         Incluir
                     </li>
-                    <li onClick={() => changePage(<Listar allData={allData} />, 'Listar')} className={`h-full flex items-center px-2 ${verifyPage('Listar')} hover:bg-cyan-300 duration-75`}>
+                    <li onClick={() => changePage(<Listar allData={allData} reloadData={reloadData} />, 'Listar')} className={`h-full flex items-center px-2 ${verifyPage('Listar')} hover:bg-cyan-300 duration-75`}>
                         <FaBars />
                         Listar
                     </li>
-                    <li onClick={() => changePage(<Alterar />, 'Alterar')} className={`h-full flex items-center px-2 ${verifyPage('Alterar')} hover:bg-cyan-300 duration-75`}>
-                        <FaPen />
-                        Alterar
-                    </li>
-                    <li onClick={() => changePage(<Excluir />, 'Excluir')} className={`h-full flex items-center px-2 ${verifyPage('Excluir')} hover:bg-cyan-300 duration-75`}>
-                        <FaTrash />
-                        Excluir
-                    </li>
+                    
 
                 </ul>
 
