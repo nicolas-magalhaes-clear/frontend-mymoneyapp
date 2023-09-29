@@ -12,6 +12,10 @@
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.6",
     "axios": "^1.5.1",
+<<<<<<< HEAD
+=======
+    "headlessui": "^0.0.0",
+>>>>>>> 897af526084b91c17ea686b28e409cc7ee568de7
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.11.0",
