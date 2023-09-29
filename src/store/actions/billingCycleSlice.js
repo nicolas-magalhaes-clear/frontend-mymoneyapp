@@ -9,7 +9,7 @@ const fetchAllData = async () => {
         throw new Error('Não foi possível buscar os dados do usuário.');
     }
     const data = await response.json();
-    console.log('data em fetch:', data);
+    
     return data;
 };
 
@@ -25,7 +25,7 @@ const billingCycleSlice = createSlice({
     reducers: {
         // Reducer para incrementar o contador
         loadCredits: (state) => {
-            console.log('state data aqui', state.data)
+           
         },
         // Reducer para decrementar o contador
         loadDebts: (state) => {
@@ -39,9 +39,9 @@ const billingCycleSlice = createSlice({
             })
             .addCase(fetchData.fulfilled, (state, action) => {
                 state.loading = 'complete';
-                console.log('full filed');
+                
                 state.data = action.payload;
-                console.log('state data:', state.data);
+                
                 state.error = null;
                 // Despache a ação loadCredits() aqui após o sucesso da solicitação da API
                 loadCredits()
