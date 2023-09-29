@@ -3,11 +3,13 @@ import CustomModal from './../../templates/Modal'
 import { useState } from "react"
 import axios from "axios"
 import UpdateModal from "../../templates/UpdateModal"
-
+import { useDispatch, useSelector } from "react-redux"
+import { fetchData } from "../../store/actions/billingCycleSlice"
 
 export default function Listar(props) {
 
-    const allData = props.allData
+    const allData = useSelector((state) => state.billingCycle.data )
+    const dispatch = useDispatch()
 
     function callModal(data) {
         setModalActive(true)
@@ -27,10 +29,15 @@ export default function Listar(props) {
     }
     
     function getData(data){
-        console.log('data ok: ', data)
-
+        console.log('data props:', props)
+        dispatch(fetchData())
         setUpdateModalActive(false)
         axios.put(`http://localhost:3003/api/${data._id}`, {data })
+    }
+
+    function closeBtn(){
+        setUpdateModalActive(false)
+        setModalActive(false)
     }
 
     const [modalActive, setModalActive] = useState(false)
@@ -66,8 +73,8 @@ export default function Listar(props) {
                 </tbody>
                 
             </table>
-            {!  modalActive ? null : (<CustomModal data={currentData} concludeDelete={concludeDelete}/>) }
-            {! updateModalActive ? null : (<UpdateModal data={currentData} getData={getData} />)}
+            {!  modalActive ? null : (<CustomModal data={currentData} closeBtn={closeBtn} concludeDelete={concludeDelete}/>) }
+            {! updateModalActive ? null : (<UpdateModal data={currentData} getData={getData} closeBtn={closeBtn} />)}
         </>
     )
 }
